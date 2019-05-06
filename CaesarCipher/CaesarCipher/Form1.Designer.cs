@@ -35,11 +35,11 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -72,7 +72,6 @@
             this.label1.Size = new System.Drawing.Size(78, 17);
             this.label1.TabIndex = 2;
             this.label1.Text = "Plain Text: ";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // textBox1
             // 
@@ -90,7 +89,6 @@
             this.label2.Size = new System.Drawing.Size(88, 17);
             this.label2.TabIndex = 4;
             this.label2.Text = "Cipher Text: ";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // textBox2
             // 
@@ -105,7 +103,6 @@
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(116, 23);
             this.progressBar1.TabIndex = 6;
-            this.progressBar1.Value = 100;
             // 
             // textBox3
             // 
@@ -156,6 +153,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Encryption";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 62);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(88, 17);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Cipher Text: ";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(100, 59);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(572, 22);
+            this.textBox5.TabIndex = 9;
+            // 
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.SystemColors.ControlLight;
@@ -173,22 +187,13 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Decryption";
             // 
-            // textBox5
+            // textBox6
             // 
-            this.textBox5.Location = new System.Drawing.Point(100, 59);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(572, 22);
-            this.textBox5.TabIndex = 9;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 62);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(88, 17);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Cipher Text: ";
+            this.textBox6.Location = new System.Drawing.Point(100, 59);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.ReadOnly = true;
+            this.textBox6.Size = new System.Drawing.Size(572, 22);
+            this.textBox6.TabIndex = 12;
             // 
             // label6
             // 
@@ -199,18 +204,11 @@
             this.label6.TabIndex = 11;
             this.label6.Text = "Plain Text: ";
             // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(100, 59);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(572, 22);
-            this.textBox6.TabIndex = 12;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(702, 433);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
