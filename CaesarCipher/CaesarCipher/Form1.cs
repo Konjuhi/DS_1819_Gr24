@@ -10,37 +10,33 @@ using System.Windows.Forms;
 
 namespace CaesarCipher {
     public partial class Form1: Form {
+        private bool encrypting;
+        private bool decrypting;
+
         public Form1() {
             InitializeComponent();
+            encrypting = false;
+            decrypting = false;
         }
 
         private void Form1_Load(object sender, EventArgs e) {
-
+            
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            try {
-                //if(Convert.ToInt32(textBox3.Text) < 0)
-                //    throw new Exception();
-                textBox5.Text = Caesar.encrypt(textBox1.Text, Convert.ToInt32(textBox3.Text));
-            } catch(Exception ex) {
-                MessageBox.Show("Ju lutemi mbushini te gjitha kutite e enkriptimit.\nQelesi duhet te jete nje numer pozitiv i plote.");
-            }
+            timer1.Start();
+            encrypting = true;
+            label7.Text = "Encrypting...";
         }
 
         private void button2_Click(object sender, EventArgs e) {
-            try {
-                //if(Convert.ToInt32(textBox4.Text) < 0)
-                //    throw new Exception();
-                textBox6.Text = Caesar.decrypt(textBox2.Text, Convert.ToInt32(textBox4.Text));
-            }
-            catch(Exception ex) {
-                MessageBox.Show("Ju lutemi mbushini te gjitha kutite e dekriptimit.\nQelesi duhet te jete nje numer pozitiv i plote.");
-            }
+            timer1.Start();
+            decrypting = true;
+            label7.Text = "Decrypting...";
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e) {
-
+            progressBar1.Value = 0;
         }
 
         private void button3_Click(object sender, EventArgs e) {
@@ -76,6 +72,35 @@ namespace CaesarCipher {
             textBox2.Text = "";
             textBox4.Text = "";
             textBox6.Text = "";
+        }
+
+        private void timer1_Tick(object sender, EventArgs e) {
+            progressBar1.Increment(4);
+            if (progressBar1.Value == 100) {
+                timer1.Stop();
+                progressBar1.Value = 0;
+                label7.Text = "";
+                if (encrypting) {
+                    try {
+                        //if(Convert.ToInt32(textBox3.Text) < 0)
+                        //    throw new Exception();
+                        textBox5.Text = Caesar.encrypt(textBox1.Text, Convert.ToInt32(textBox3.Text));
+                        encrypting = false;
+                    } catch (Exception ex) {
+                        MessageBox.Show("Ju lutemi mbushini te gjitha kutite e enkriptimit.\nQelesi duhet te jete nje numer i plote.");
+                    }
+                }
+                else if(decrypting) {
+                    try {
+                        //if(Convert.ToInt32(textBox4.Text) < 0)
+                        //    throw new Exception();
+                        textBox6.Text = Caesar.decrypt(textBox2.Text, Convert.ToInt32(textBox4.Text));
+                        decrypting = false;
+                    } catch (Exception ex) {
+                        MessageBox.Show("Ju lutemi mbushini te gjitha kutite e dekriptimit.\nQelesi duhet te jete nje numer i plote.");
+                    }
+                }
+            }
         }
     }
 
