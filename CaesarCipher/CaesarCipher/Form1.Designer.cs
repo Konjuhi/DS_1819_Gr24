@@ -267,11 +267,10 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(606, 404);
+            this.label7.Location = new System.Drawing.Point(586, 404);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(71, 17);
+            this.label7.Size = new System.Drawing.Size(0, 17);
             this.label7.TabIndex = 13;
-            this.label7.Text = "Loading...";
             // 
             // timer1
             // 

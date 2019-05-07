@@ -12,11 +12,15 @@ namespace CaesarCipher {
     public partial class Form1: Form {
         private bool encrypting;
         private bool decrypting;
+        private bool sendingToDecrypt;
+        private bool sendingToEncrypt;
 
         public Form1() {
             InitializeComponent();
             encrypting = false;
             decrypting = false;
+            sendingToDecrypt = false;
+            sendingToEncrypt = false;
         }
 
         private void Form1_Load(object sender, EventArgs e) {
@@ -36,30 +40,19 @@ namespace CaesarCipher {
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e) {
-            progressBar1.Value = 0;
+
         }
 
         private void button3_Click(object sender, EventArgs e) {
-            try {
-                if(textBox5.Text == null || textBox3.Text == null)
-                    throw new Exception();
-                textBox2.Text = textBox5.Text;
-                textBox4.Text = textBox3.Text;
-            } catch(Exception ex) {
-                MessageBox.Show("Nuk ka te dhena per te derguar.");
-            }
+            timer1.Start();
+            sendingToDecrypt = true;
+            label7.Text = "Sending data...";
         }
 
         private void button4_Click(object sender, EventArgs e) {
-            try {
-                if (textBox5.Text == null || textBox3.Text == null)
-                    throw new Exception();
-                textBox1.Text = textBox6.Text;
-                textBox3.Text = textBox4.Text;
-            }
-            catch (Exception ex) {
-                MessageBox.Show("Nuk ka te dhena per te derguar.");
-            }
+            timer1.Start();
+            sendingToEncrypt = true;
+            label7.Text = "Sending data...";
         }
 
         private void button5_Click(object sender, EventArgs e) {
@@ -98,6 +91,28 @@ namespace CaesarCipher {
                         decrypting = false;
                     } catch (Exception ex) {
                         MessageBox.Show("Ju lutemi mbushini te gjitha kutite e dekriptimit.\nQelesi duhet te jete nje numer i plote.");
+                    }
+                }
+                else if(sendingToDecrypt) {
+                    try {
+                        if (textBox5.Text == null || textBox3.Text == null)
+                            throw new Exception();
+                        textBox2.Text = textBox5.Text;
+                        textBox4.Text = textBox3.Text;
+                        sendingToDecrypt = false;
+                    } catch (Exception ex) {
+                        MessageBox.Show("Nuk ka te dhena per te derguar.");
+                    }
+                }
+                else if (sendingToEncrypt) {
+                    try {
+                        if (textBox5.Text == null || textBox3.Text == null)
+                            throw new Exception();
+                        textBox1.Text = textBox6.Text;
+                        textBox3.Text = textBox4.Text;
+                        sendingToEncrypt = false;
+                    } catch (Exception ex) {
+                        MessageBox.Show("Nuk ka te dhena per te derguar.");
                     }
                 }
             }
