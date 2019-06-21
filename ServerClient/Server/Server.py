@@ -93,3 +93,67 @@ class Server:
                     jsonData["message"] = base64.b64encode(DES.new(key, DES.MODE_CBC, iv1).encrypt(multipleOf8(message1).encode())).decode()
                     self.sendData(json.dumps(jsonData), clientAddress)
                 db.close()
+
+    def receiveData(self):
+        return self.serverSocket.recvfrom(4096)
+
+    def sendData(self, data, clientAddress):
+        self.serverSocket.sendto(data.encode("utf-8"), clientAddress)
+
+    def insertStudent(self, studentInfo):
+        dt = TinyDB("C:\\Users\\albin\\source\\repos\\DS_1819_Gr24\\Projekti2\\Server\\db.json")
+        students = dt.table("students")
+        students.insert({"firstName": studentInfo["firstName"], "lastName": studentInfo["lastName"], "gender": studentInfo["gender"], "faculty": studentInfo["faculty"], "id": studentInfo["id"], "averageGrade": studentInfo["averageGrade"], "username": studentInfo["username"], "password": studentInfo["password"]})
+        dt.close()
+
+def hashPassword(password):
+    salt = hashlib.sha256(os.urandom(60)).hexdigest().encode('ascii')
+    hashedPassword = binascii.hexlify(hashlib.pbkdf2_hmac('sha512', password.encode('utf-8'), salt, 100000))
+    return (salt + hashedPassword).decode('ascii')
+
+def checkPassword(storedPassword, providedPassword):
+    salt = storedPassword[:64]
+    storedPassword = storedPassword[64:]
+    hashedPassword = hashlib.pbkdf2_hmac('sha512', providedPassword.encode('utf-8'), salt.encode('ascii'), 100000)
+    hashedPassword = binascii.hexlify(hashedPassword).decode('ascii')
+    return hashedPassword == storedPassword
+
+def multipleOf8(str):
+    addNumber = 8-len(str)%8
+    addDots = ""
+    for i in range(addNumber):
+        addDots += '.'
+    return addDots + str
+
+if __name__ == "__main__":
+    server = Server()
+    server.loop()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
