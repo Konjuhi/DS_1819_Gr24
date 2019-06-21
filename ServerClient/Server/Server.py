@@ -128,32 +128,3 @@ def multipleOf8(str):
 if __name__ == "__main__":
     server = Server()
     server.loop()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

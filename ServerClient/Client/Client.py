@@ -194,24 +194,6 @@ class SignupFrame(Frame):
         self.signupButton = Button(self, text = "Sign up")
         self.signupButton.grid(column = 2, row = 9)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class MainFrame(Frame):
     def __init__(self, parent):
         Frame.__init__(self, parent)
