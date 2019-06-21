@@ -193,3 +193,158 @@ class SignupFrame(Frame):
 
         self.signupButton = Button(self, text = "Sign up")
         self.signupButton.grid(column = 2, row = 9)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class MainFrame(Frame):
+    def __init__(self, parent):
+        Frame.__init__(self, parent)
+
+        self.place(in_ = parent, x = 0, y = 0, relwidth = 1, relheight = 1)
+        self.configure(padx = 40, pady = 20)
+        self.grid_rowconfigure(0, pad = 20)
+        for i in range(1, 9):
+            self.grid_rowconfigure(i, pad = 5)
+
+        self.headerLabel = Label(self, text = "", font = ('Helvetica', 14))
+        self.headerLabel.grid(column = 0, row = 0)
+
+        self.firstNameLabel = Label(self, text = "")
+        self.firstNameLabel.grid(column = 0, row = 1)
+
+        self.lastNameLabel = Label(self, text = "")
+        self.lastNameLabel.grid(column = 0, row = 2)
+
+        self.genderLabel = Label(self, text = "")
+        self.genderLabel.grid(column = 0, row = 3)
+
+        self.facultyLabel = Label(self, text = "")
+        self.facultyLabel.grid(column = 0, row = 4)
+
+        self.idLabel = Label(self, text = "")
+        self.idLabel.grid(column = 0, row = 5)
+
+        self.averageGradeLabel = Label(self, text = "")
+        self.averageGradeLabel.grid(column = 0, row = 6)
+
+        self.usernameLabel = Label(self, text = "")
+        self.usernameLabel.grid(column = 0, row = 7)
+
+        self.logoutButton = Button(self, text = "Log out")
+        self.logoutButton.grid(column = 0, row = 8)
+
+    def setStudentData(self, studentInfo):
+        self.headerLabel.configure(text = "Welcome " + studentInfo["firstName"])
+        self.firstNameLabel.configure(text = "Your first name: " + studentInfo["firstName"])
+        self.lastNameLabel.configure(text = "Your last name: " + studentInfo["lastName"])
+        self.genderLabel.configure(text = "Your gender: " + studentInfo["gender"])
+        self.facultyLabel.configure(text = "Your faculty: " + studentInfo["faculty"])
+        self.idLabel.configure(text = "Your id: " + studentInfo["id"])
+        self.averageGradeLabel.configure(text = "Your average grade: " + studentInfo["averageGrade"])
+        self.usernameLabel.configure(text = "Your username: " + studentInfo["username"])
+
+    def clearStudentData(self):
+        self.headerLabel.configure(text = "")
+        self.firstNameLabel.configure(text = "")
+        self.lastNameLabel.configure(text = "")
+        self.genderLabel.configure(text = "")
+        self.facultyLabel.configure(text = "")
+        self.idLabel.configure(text = "")
+        self.averageGradeLabel.configure(text = "")
+        self.usernameLabel.configure(text = "")
+
+class Client:
+    def __init__(self):
+    	self.clientSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    	self.UDP_HOST_SERVER = "localhost"
+    	self.UDP_PORT = 12000
+    	self.messageSent = False
+
+    def sendData(self, data):
+        self.dataSent = True
+        self.clientSocket.sendto(data, (self.UDP_HOST_SERVER, self.UDP_PORT))
+
+    def receiveData(self):
+        return self.clientSocket.recvfrom(4096)
+
+def multipleOf8(str):
+    addNumber = 8-len(str)%8
+    addDots = ""
+    for i in range(addNumber):
+        addDots += '.'
+    return addDots + str
+
+def removeDots(str):
+    i = 0
+    while True:
+        if str[i] == '.':
+            i = i+1
+        else:
+            return str[i:]
+    
+if __name__ == "__main__":
+    clientTk = ClientTk()
