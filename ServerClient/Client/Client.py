@@ -212,36 +212,6 @@ class SignupFrame(Frame):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class MainFrame(Frame):
     def __init__(self, parent):
         Frame.__init__(self, parent)
