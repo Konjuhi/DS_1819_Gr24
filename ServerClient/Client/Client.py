@@ -256,7 +256,7 @@ class Client:
     	self.clientSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     	self.UDP_HOST_SERVER = "localhost"
     	self.UDP_PORT = 12000
-    	self.messageSent = False
+    	self.dataSent = False
 
     def sendData(self, data):
         self.dataSent = True
